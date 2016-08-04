@@ -1,20 +1,43 @@
 body {
     margin: 0;
-    background: #393B32;
+    background: #1a1a1a;
     color: #fff
 }
 
-.videoThumbnail{
-    height: 200px;
-    width: 265;
+h2 {
+    text-align: center;
 }
 
-.videoList{
+#player-wrapper > iframe{
+    border: 5px solid #000;
+}
+
+.videoThumbnail {
+    height: 200px;
+    width: 265;
+    opacity: 0.5;
+    -webkit-transition: opacity 0.5s; /* Safari */
+    transition: opacity 0.5s;
+}
+
+.videoThumbnail:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.videoList {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
 }
 
-.video{
-    margin:1px;
+.video {
+    margin: 4px;
+}
+
+.description {
+    max-width: 260px;
+    z-index: 1;
+    padding: 2px;
+    position: absolute;
 }

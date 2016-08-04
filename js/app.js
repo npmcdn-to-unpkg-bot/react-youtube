@@ -24,7 +24,6 @@ window.onYouTubeIframeAPIReady = function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
     height: '390',
     width: '640',
-    videoId: 'M7lc1UVf-VE',
     events: {
       'onReady': onPlayerReady
     }
@@ -32,7 +31,7 @@ window.onYouTubeIframeAPIReady = function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-  event.target.playVideo();
+  // event.target.playVideo();
 
   // catch the event on the video image and play it to the youtube player
   $(document).on("click", ".videoThumbnail", function (event) {
@@ -84,9 +83,11 @@ var VideoList = React.createClass({
 // Video
 var Video = React.createClass({
   render: function () {
+    var datum = this.props.datum;
     return (
-      <div className="video" data-video-id={this.props.datum.id.videoId}>
-        <img className="videoThumbnail" src={this.props.datum.snippet.thumbnails.high.url}/>
+      <div className="video" data-video-id={datum.id.videoId}>
+        <p className="description">{datum.snippet.title}</p>
+        <img className="videoThumbnail" src={datum.snippet.thumbnails.high.url}/>
       </div>
     );
   }
