@@ -5,7 +5,7 @@ var config = {
     part: 'id, snippet',
     order: 'relevance',
     maxResults: 20,
-    q: 'cats'
+    q: 'quest'
   },
   onThumbnailClickEvent: 'thumbnail_clicked'
 }
@@ -59,7 +59,7 @@ var VideoBox = React.createClass({
   render: function () {
     return (
       <div className="videoBox">
-        <h1>Videos</h1>
+        <h2>Videos</h2>
         <VideoList data={this.state.data} />
       </div>
     );

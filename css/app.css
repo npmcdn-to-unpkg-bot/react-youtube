@@ -1,11 +1,20 @@
+body {
+    margin: 0;
+    background: #393B32;
+    color: #fff
+}
+
+.videoThumbnail{
+    height: 200px;
+    width: 265;
+}
+
 .videoList{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     justify-content: space-around;
 }
 
-.video img{
-    height: 200px;
-    width: 200px;
+.video{
+    margin:1px;
 }
