@@ -1,13 +1,6 @@
 var config = {
   youtubeApiKey: 'AIzaSyA2zb_q0cGcLsNXi6KcIGysf9OAb6YCS88',
   youtubeApiIframe: 'https://www.youtube.com/iframe_api',
-  searchParams: {
-    part: 'id, snippet',
-    order: 'relevance',
-    maxResults: 20,
-    q: 'quest'
-  },
-  onThumbnailClickEvent: 'thumbnail_clicked'
 }
 
 // Video Player
@@ -48,12 +41,27 @@ function onPlayerReady(event) {
 // Video container
 var VideoBox = React.createClass({
   getInitialState: function () {
-    return { data: [] };
+    return {
+      data: [],
+      searchParams: {
+        // default search params
+        part: 'id, snippet',
+        order: 'relevance',
+        maxResults: 20,
+        q: ''
+      },
+    };
   },
-  componentDidMount: function () {
-    $.getJSON('https://www.googleapis.com/youtube/v3/search?key=' + config.youtubeApiKey + '&' + $.param(config.searchParams), function (data) {
+  queryForVideos: function () {
+    $.getJSON('https://www.googleapis.com/youtube/v3/search?key=' + config.youtubeApiKey + '&' + $.param(this.state.searchParams), function (data) {
       this.setState({ data: data.items });
     }.bind(this));
+  },
+  setQueryParams: function () {
+    // this.setState({ data: data.items });
+  },
+  componentDidMount: function () {
+    this.queryForVideos();
   },
   render: function () {
     return (
