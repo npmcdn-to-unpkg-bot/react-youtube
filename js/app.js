@@ -3,6 +3,16 @@ var config = {
   youtubeApiIframe: 'https://www.youtube.com/iframe_api'
 }
 
+var searchParams = {
+  // default search params
+  part: 'id, snippet',
+  order: 'relevance',
+  maxResults: 16,
+  videoEmbeddable: true,
+  type: 'video',
+  q: ''
+}
+
 // Video Player
 var tag = document.createElement('script');
 
@@ -38,30 +48,21 @@ function onPlayerReady(event) {
 var VideoBox = React.createClass({
   getInitialState: function () {
     return {
-      data: [],
-      searchParams: {
-        // default search params
-        part: 'id, snippet',
-        order: 'relevance',
-        maxResults: 16,
-        q: ''
-      },
+      data: []
     };
   },
   queryForVideos: function () {
-    $.getJSON('https://www.googleapis.com/youtube/v3/search?key=' + config.youtubeApiKey + '&' + $.param(this.state.searchParams), function (data) {
+    $.getJSON('https://www.googleapis.com/youtube/v3/search?key=' + config.youtubeApiKey + '&' + $.param(searchParams), function (data) {
       this.setState({ data: data.items });
     }.bind(this));
   },
   setQueryParams: function () {
-    var newSearchParams = this.state.searchParams;
-    newSearchParams.q = $('#search-box').val();
-    this.setState({ searchParams: newSearchParams });
+    searchParams.q = $('#search-box').val();
+    console.log(searchParams);
     this.queryForVideos();
   },
   componentDidMount: function () {
     $(document).on('change', '#search-box', this.setQueryParams);
-    // this.queryForVideos();
   },
   render: function () {
     return (
