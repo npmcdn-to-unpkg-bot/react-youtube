@@ -13,6 +13,10 @@ var searchParams = {
   q: ''
 }
 
+$(document).on('submit', '.search', function(event){
+  event.preventDefault();
+});
+
 // Video Player
 var tag = document.createElement('script');
 
