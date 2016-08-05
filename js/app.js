@@ -7,7 +7,7 @@ var config = {
   youtubeApiSearch: '',
   youtubeApiVideo: ''
 }
-config.youtubeApiSearch= 'https://www.googleapis.com/youtube/v3/search?key=' + config.youtubeApiKey;
+config.youtubeApiSearch = 'https://www.googleapis.com/youtube/v3/search?key=' + config.youtubeApiKey;
 
 var searchParams = {
   // default search params
@@ -16,7 +16,10 @@ var searchParams = {
   maxResults: 16,
   videoEmbeddable: true,
   type: 'video',
-  q: ''
+  q: '',
+  nextPageToken: '',
+  previousPageToken: '',
+  pageToken: ''
 }
 
 $(document).on('submit', '.search', function (event) {
@@ -66,14 +69,21 @@ var VideoBox = React.createClass({
       $.getJSON(config.youtubeApiSearch + '&' + $.param(searchParams), function (data) {
         this.setState({ data: data.items });
         $('.spinner').removeClass('loader');
+        searchParams.nextPageToken = data.nextPageToken;
+        searchParams.previousPageToken = data.prevPageToken;
       }.bind(this));
     }
     $('.spinner').removeClass('loader');
   },
-  setQueryParams: function () {
+  setQueryParams: function (event) {
     var timer;
+    var element = $(event.target);
     searchParams.q = $('#search-box').val();
     searchParams.order = $('#order-select').val();
+    searchParams.pageToken = '';
+    if (element.is('.fetch-next-prev')) {
+      searchParams.pageToken = (element.is('.prev')) ? searchParams.previousPageToken : searchParams.nextPageToken;
+    }
     clearTimeout(timer);
     $('.spinner').addClass('loader');
     timer = setTimeout(this.queryForVideos, 500);
@@ -85,7 +95,8 @@ var VideoBox = React.createClass({
   render: function () {
     return (
       <div className="videoBox">
-        <h2>Videos</h2>
+        <button onClick={this.setQueryParams} className="btn btn-default prev fetch-next-prev">Previous</button>
+        <button onClick={this.setQueryParams} className="btn btn-default next fetch-next-prev">Next</button>
         <div className="spinner">
           <VideoList data={this.state.data} />
         </div>
