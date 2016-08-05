@@ -1,7 +1,14 @@
+/**
+ * Config Object
+ */
 var config = {
   youtubeApiKey: 'AIzaSyA2zb_q0cGcLsNXi6KcIGysf9OAb6YCS88',
-  youtubeApiIframe: 'https://www.youtube.com/iframe_api'
+  youtubeApiIframe: 'https://www.youtube.com/iframe_api',
+  youtubeApiSearch: '',
+  youtubeApiVideo: ''
 }
+config.youtubeApiSearch= 'https://www.googleapis.com/youtube/v3/search?key=' + config.youtubeApiKey;
+config.youtubeApiVideo= 'https://www.googleapis.com/youtube/v3/videos?key=' + config.youtubeApiKey;
 
 var searchParams = {
   // default search params
@@ -57,10 +64,10 @@ var VideoBox = React.createClass({
   },
   queryForVideos: function () {
     if (searchParams.q) {
-      $.getJSON('https://www.googleapis.com/youtube/v3/search?key=' + config.youtubeApiKey + '&' + $.param(searchParams), function (data) {
+      $.getJSON(config.youtubeApiSearch + '&' + $.param(searchParams), function (data) {
         this.setState({ data: data.items });
         $('.spinner').removeClass('loader');
-      }.bind(this)); 
+      }.bind(this));
     }
     $('.spinner').removeClass('loader');
   },
