@@ -15,7 +15,7 @@ header {
 
 button, input, select, option {
     color: #1a1a1a !important;
-    font-weight: 700 !important;
+    font-weight: 600 !important;
 }
 
 #player-wrapper> iframe {
