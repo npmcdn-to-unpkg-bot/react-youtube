@@ -95,10 +95,14 @@ var VideoBox = React.createClass({
   render: function () {
     return (
       <div className="videoBox">
-        <button onClick={this.setQueryParams} className="btn btn-default prev fetch-next-prev">Previous</button>
-        <button onClick={this.setQueryParams} className="btn btn-default next fetch-next-prev">Next</button>
-        <div className="spinner">
-          <VideoList data={this.state.data} />
+        <div className="btn-box col-md-offset-9 col-md-3">
+          <button onClick={this.setQueryParams} className="btn btn-default prev fetch-next-prev">Previous</button>
+          <button onClick={this.setQueryParams} className="btn btn-default next fetch-next-prev">Next</button>
+        </div>
+        <div className=" col-md-12">
+          <div className="spinner">
+            <VideoList data={this.state.data} />
+          </div>
         </div>
       </div>
     );

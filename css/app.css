@@ -17,6 +17,17 @@ header {
     border: 5px solid #000;
 }
 
+.fetch-next-prev{
+    margin: 10px 10px 10px 0px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    padding: 12px;
+    min-width: 30px;
+    min-width: 100px !important;
+}
+
 .videoThumbnail {
     height: 200px;
     width: 265;
