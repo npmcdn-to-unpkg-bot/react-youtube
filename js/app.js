@@ -13,7 +13,7 @@ var searchParams = {
   q: ''
 }
 
-$(document).on('submit', '.search', function(event){
+$(document).on('submit', '.search', function (event) {
   event.preventDefault();
 });
 
@@ -56,25 +56,33 @@ var VideoBox = React.createClass({
     };
   },
   queryForVideos: function () {
-    $.getJSON('https://www.googleapis.com/youtube/v3/search?key=' + config.youtubeApiKey + '&' + $.param(searchParams), function (data) {
-      this.setState({ data: data.items });
-      debugger
-    }.bind(this));
+    if (searchParams.q) {
+      $.getJSON('https://www.googleapis.com/youtube/v3/search?key=' + config.youtubeApiKey + '&' + $.param(searchParams), function (data) {
+        this.setState({ data: data.items });
+        $('.spinner').removeClass('loader');
+      }.bind(this));
+    }
+    $('.spinner').removeClass('loader');
   },
   setQueryParams: function () {
+    var timer;
     searchParams.q = $('#search-box').val();
     searchParams.order = $('#order-select').val();
-    this.queryForVideos();
+    clearTimeout(timer);
+    $('.spinner').addClass('loader');
+    timer = setTimeout(this.queryForVideos, 500);
   },
   componentDidMount: function () {
-    $(document).on('change', '#search-box', this.setQueryParams);
+    $(document).on('keyup', '#search-box', this.setQueryParams);
     $(document).on('change', '#order-select', this.setQueryParams);
   },
   render: function () {
     return (
       <div className="videoBox">
         <h2>Videos</h2>
-        <VideoList data={this.state.data} />
+        <div className="spinner">
+          <VideoList data={this.state.data} />
+        </div>
       </div>
     );
   }
