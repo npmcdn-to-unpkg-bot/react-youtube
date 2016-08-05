@@ -1,6 +1,6 @@
 var config = {
   youtubeApiKey: 'AIzaSyA2zb_q0cGcLsNXi6KcIGysf9OAb6YCS88',
-  youtubeApiIframe: 'https://www.youtube.com/iframe_api',
+  youtubeApiIframe: 'https://www.youtube.com/iframe_api'
 }
 
 // Video Player
@@ -24,8 +24,6 @@ window.onYouTubeIframeAPIReady = function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
-  // event.target.playVideo();
-
   // catch the event on the video image and play it to the youtube player
   $(document).on("click", ".videoThumbnail", function (event) {
     var videoId = $(this).parents('.video').attr('data-video-id');
@@ -33,9 +31,7 @@ function onPlayerReady(event) {
       'videoId': videoId,
       'suggestedQuality': 'large'
     });
-  })
-
-
+  });
 }
 
 // Video container
@@ -47,7 +43,7 @@ var VideoBox = React.createClass({
         // default search params
         part: 'id, snippet',
         order: 'relevance',
-        maxResults: 20,
+        maxResults: 16,
         q: ''
       },
     };
@@ -58,10 +54,14 @@ var VideoBox = React.createClass({
     }.bind(this));
   },
   setQueryParams: function () {
-    // this.setState({ data: data.items });
+    var newSearchParams = this.state.searchParams;
+    newSearchParams.q = $('#search-box').val();
+    this.setState({ searchParams: newSearchParams });
+    this.queryForVideos();
   },
   componentDidMount: function () {
-    this.queryForVideos();
+    $(document).on('change', '#search-box', this.setQueryParams);
+    // this.queryForVideos();
   },
   render: function () {
     return (
