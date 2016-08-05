@@ -6,7 +6,7 @@ var config = {
 var searchParams = {
   // default search params
   part: 'id, snippet',
-  order: 'relevance',
+  order: '',
   maxResults: 16,
   videoEmbeddable: true,
   type: 'video',
@@ -58,15 +58,17 @@ var VideoBox = React.createClass({
   queryForVideos: function () {
     $.getJSON('https://www.googleapis.com/youtube/v3/search?key=' + config.youtubeApiKey + '&' + $.param(searchParams), function (data) {
       this.setState({ data: data.items });
+      debugger
     }.bind(this));
   },
   setQueryParams: function () {
     searchParams.q = $('#search-box').val();
-    console.log(searchParams);
+    searchParams.order = $('#order-select').val();
     this.queryForVideos();
   },
   componentDidMount: function () {
     $(document).on('change', '#search-box', this.setQueryParams);
+    $(document).on('change', '#order-select', this.setQueryParams);
   },
   render: function () {
     return (
