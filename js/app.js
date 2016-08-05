@@ -13,7 +13,7 @@ var searchParams = {
   // default search params
   part: 'id, snippet',
   order: '',
-  maxResults: 16,
+  maxResults: 12,
   videoEmbeddable: true,
   type: 'video',
   q: '',
