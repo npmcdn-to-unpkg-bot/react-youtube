@@ -8,7 +8,6 @@ var config = {
   youtubeApiVideo: ''
 }
 config.youtubeApiSearch= 'https://www.googleapis.com/youtube/v3/search?key=' + config.youtubeApiKey;
-config.youtubeApiVideo= 'https://www.googleapis.com/youtube/v3/videos?key=' + config.youtubeApiKey;
 
 var searchParams = {
   // default search params
