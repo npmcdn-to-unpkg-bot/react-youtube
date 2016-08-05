@@ -60,7 +60,7 @@ var VideoBox = React.createClass({
       $.getJSON('https://www.googleapis.com/youtube/v3/search?key=' + config.youtubeApiKey + '&' + $.param(searchParams), function (data) {
         this.setState({ data: data.items });
         $('.spinner').removeClass('loader');
-      }.bind(this));
+      }.bind(this)); 
     }
     $('.spinner').removeClass('loader');
   },
