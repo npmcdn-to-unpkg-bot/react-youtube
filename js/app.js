@@ -13,7 +13,7 @@ var searchParams = {
   // default search params
   part: 'id, snippet',
   order: '',
-  maxResults: 12,
+  maxResults: 9,
   videoEmbeddable: true,
   type: 'video',
   q: '',
@@ -38,8 +38,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 window.onYouTubeIframeAPIReady = function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
-    height: '390',
-    width: '640',
+    height: '488',
+    width: '800',
     events: {
       'onReady': onPlayerReady
     }
@@ -97,7 +97,7 @@ var VideoBox = React.createClass({
   render: function () {
     return (
       <div className="videoBox">
-        <div className="btn-box col-md-offset-9 col-md-3">
+        <div className="btn-box col-md-offset-6 col-md-6">
           <button onClick={this.setQueryParams} className="btn btn-default prev fetch-next-prev">Previous</button>
           <button onClick={this.setQueryParams} className="btn btn-default next fetch-next-prev">Next</button>
         </div>

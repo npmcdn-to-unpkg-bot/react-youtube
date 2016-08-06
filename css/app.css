@@ -184,3 +184,64 @@ select#order-select {
 }
 
 /* Loader */
+
+@media (max-width: 1850px) {
+  #player-wrapper> iframe {
+    width: 640px;
+    height: 390px;
+  }
+  .col-lg-5{
+      width:40%;
+  }
+  .col-lg-7{
+      width:60%;
+  }
+}
+
+@media (max-width: 1570px) {
+  #player-wrapper> iframe {
+    width: 600px;
+    height: 366px;
+  }
+}
+
+@media (max-width: 1370px) {
+  .col-lg-5{
+      width:50%;
+  }
+  .col-lg-7{
+      width:50%;
+  }
+}
+
+@media (max-width: 1260px) {
+  #player-wrapper> iframe {
+    width: 640px;
+    height: 390px;
+  }
+  .col-lg-5{
+      width:55%;
+  }
+  .col-lg-7{
+      width:45%;
+  }
+}
+
+@media (max-width: 1200px) {
+  #player-wrapper> iframe {
+    width: 100%;
+    height: 500px;
+  }
+  .col-lg-5{
+      width:100%;
+  }
+  .col-lg-7{
+      width:100%;
+  }
+}
+
+@media (max-width: 850px) {
+  #player-wrapper> iframe {
+    width: 100%;
+  }
+}
