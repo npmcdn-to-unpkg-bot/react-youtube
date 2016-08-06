@@ -2,7 +2,7 @@
  * Config Object
  */
 var config = {
-  youtubeApiKey: 'YOUR_API_KEY',
+  youtubeApiKey: 'API_KEY',
   youtubeApiIframe: 'https://www.youtube.com/iframe_api',
   youtubeApiSearch: '',
   youtubeApiVideo: ''
@@ -47,6 +47,8 @@ window.onYouTubeIframeAPIReady = function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
+  // focus on search input
+  $('#search-box').focus();
   // catch the event on the video image and play it to the youtube player
   $(document).on("click", ".videoThumbnail", function (event) {
     var videoId = $(this).parents('.video').attr('data-video-id');

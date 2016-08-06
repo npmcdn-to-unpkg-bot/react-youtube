@@ -85,12 +85,15 @@ ul {
     height: 40px;
 }
 
+.margin-topbot {
+    margin: 10px 0px;
+}
+
 /**
 *   Searchbar styles & select box
 */
 
 .search> input[type=text] {
-    margin-left: 5%;
     width: 60%;
     box-sizing: border-box;
     border: 2px solid #BDB635;
@@ -108,7 +111,6 @@ ul {
 
 .search> input[type=text]:focus {
     width: 80%;
-    outline: none;
 }
 
 select#order-select {
