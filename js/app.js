@@ -2,7 +2,7 @@
  * Config Object
  */
 var config = {
-  youtubeApiKey: 'AIzaSyA2zb_q0cGcLsNXi6KcIGysf9OAb6YCS88',
+  youtubeApiKey: 'YOUR_API_KEY',
   youtubeApiIframe: 'https://www.youtube.com/iframe_api',
   youtubeApiSearch: '',
   youtubeApiVideo: ''
@@ -132,6 +132,7 @@ var Video = React.createClass({
       <div className="video" data-video-id={datum.id.videoId}>
         <p className="description">{datum.snippet.title}</p>
         <img className="videoThumbnail" src={datum.snippet.thumbnails.high.url}/>
+        <img className="add-img" src="../images/add.png"/>
       </div>
     );
   }

@@ -69,6 +69,21 @@ button:hover, button:focus, button:visited{
     position: absolute;
 }
 
+ul {
+    list-style: square inside; /* if the 'fancy square' image is not available, the default square style will be used instead */
+}
+
+#playlist{
+    margin-top: 30px;
+}
+
+.add-img{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+}
 
 /**
 *   Searchbar styles & select box
