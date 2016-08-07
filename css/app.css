@@ -84,6 +84,7 @@ button:hover, button:focus, button:visited{
 
 ul {
     list-style: square inside; /* if the 'fancy square' image is not available, the default square style will be used instead */
+    font-size: 16px;
 }
 
 #playlist{

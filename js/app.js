@@ -148,7 +148,50 @@ var Video = React.createClass({
   }
 });
 
+// Playlist
+var PlayList = React.createClass({
+  getInitialState: function () {
+    return {
+      playlist_data: []
+    };
+  },
+  addToPlaylist: function (event) {
+    var element = $(event.target);
+    var new_data_array = this.state.playlist_data.concat(element.parent('.video').attr('data-video-id'));
+    this.setState({ playlist_data: new_data_array});
+  },
+  componentDidMount: function () {
+    $(document).on('click', '.add-img', this.addToPlaylist);
+  },
+  render: function () {
+    var count = 0;
+    return (
+      <ul className="playList">
+        {this.state.playlist_data.map(function (datum) {
+          count++;
+          return <PlaylistElement key={count} datum={datum} />
+        }) }
+      </ul>
+    );
+  }
+});
+
+// Playlist element
+var PlaylistElement = React.createClass({
+  render: function () {
+    var datum = this.props.datum;
+    return (
+      <li className="playlist-element" data-video-id={datum}>{datum}</li>
+    );
+  }
+});
+
 ReactDOM.render(
   <VideoBox />,
   document.getElementById('video-box')
+);
+
+ReactDOM.render(
+  <PlayList />,
+  document.getElementById('playlist')
 );
