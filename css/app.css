@@ -25,13 +25,22 @@ button, input, select, option {
 
 .fetch-next-prev{
     margin: 10px 10px 10px 0px;
-    border: 2px solid #BDB635;
-    border-radius: 4px;
+    border: none;
     font-size: 16px;
-    background-color: #D6CB02;
     padding: 12px;
-    min-width: 30px;
-    min-width: 100px !important;
+    width: 50px;
+    height: 50px;
+}
+
+.prev{
+    background: url(../images/left_arrow.png);
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+}
+.next{
+    background: url(../images/right_arrow.png);
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
 }
 
 .videoThumbnail {
@@ -49,7 +58,9 @@ button, input, select, option {
 }
 
 button:hover, button:focus, button:visited{
-    background: #BAB000 !important;
+    background-color: #1a1a1a !important;
+    opacity: 0.6 !important;
+    outline: none !important;
 }
 
 .videoList {
@@ -59,6 +70,7 @@ button:hover, button:focus, button:visited{
 }
 
 .video {
+    position: relative;
     margin: 10px 4px;
 }
 
@@ -67,6 +79,7 @@ button:hover, button:focus, button:visited{
     z-index: 1;
     padding: 2px;
     position: absolute;
+    cursor: pointer;
 }
 
 ul {
@@ -83,6 +96,15 @@ ul {
     right: 0;
     width: 40px;
     height: 40px;
+    cursor: pointer;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.add-img:hover{
+    -ms-transform: scale(1.2, 1.2); /* IE 9 */
+    -webkit-transform: scale(1.2, 1.2); /* Safari */
+    transform: scale(1.2, 1.2);
 }
 
 .margin-topbot {
@@ -99,7 +121,7 @@ ul {
     border: 2px solid #BDB635;
     border-radius: 4px;
     font-size: 16px;
-    background-color:#D6CB02;
+    /*background-color:#D6CB02;*/
     background-image: url('../images/search.png');
     background-position: 10px 10px;
     background-repeat: no-repeat;
@@ -132,6 +154,7 @@ select#order-select {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 /**

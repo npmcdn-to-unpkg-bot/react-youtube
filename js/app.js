@@ -50,7 +50,7 @@ function onPlayerReady(event) {
   // focus on search input
   $('#search-box').focus();
   // catch the event on the video image and play it to the youtube player
-  $(document).on("click", ".videoThumbnail", function (event) {
+  $(document).on("click", ".videoThumbnail, .description", function (event) {
     var videoId = $(this).parents('.video').attr('data-video-id');
     player.loadVideoById({
       'videoId': videoId,
@@ -71,11 +71,13 @@ var VideoBox = React.createClass({
       $.getJSON(config.youtubeApiSearch + '&' + $.param(searchParams), function (data) {
         this.setState({ data: data.items });
         $('.spinner').removeClass('loader');
+        $('.add-img').show();
         searchParams.nextPageToken = data.nextPageToken;
         searchParams.previousPageToken = data.prevPageToken;
       }.bind(this));
     }
     $('.spinner').removeClass('loader');
+    $('.add-img').show();
   },
   setQueryParams: function (event) {
     var timer;
@@ -88,6 +90,7 @@ var VideoBox = React.createClass({
     }
     clearTimeout(timer);
     $('.spinner').addClass('loader');
+    $('.add-img').hide();
     timer = setTimeout(this.queryForVideos, 500);
   },
   componentDidMount: function () {
@@ -97,9 +100,9 @@ var VideoBox = React.createClass({
   render: function () {
     return (
       <div className="videoBox">
-        <div className="btn-box col-md-offset-6 col-md-6">
-          <button onClick={this.setQueryParams} className="btn btn-default prev fetch-next-prev">Previous</button>
-          <button onClick={this.setQueryParams} className="btn btn-default next fetch-next-prev">Next</button>
+        <div className="btn-box col-md-offset-6 col-md-6 clearfix">
+          <button onClick={this.setQueryParams} className="btn btn-default next fetch-next-prev pull-right"></button>
+          <button onClick={this.setQueryParams} className="btn btn-default prev fetch-next-prev pull-right"></button>
         </div>
         <div className=" col-md-12">
           <div className="spinner">
@@ -128,13 +131,18 @@ var VideoList = React.createClass({
 
 // Video
 var Video = React.createClass({
+  getInitialState: function () {
+    return {
+      add_img: '../images/add.png'
+    };
+  },
   render: function () {
     var datum = this.props.datum;
     return (
       <div className="video" data-video-id={datum.id.videoId}>
         <p className="description">{datum.snippet.title}</p>
         <img className="videoThumbnail" src={datum.snippet.thumbnails.high.url}/>
-        <img className="add-img" src="../images/add.png"/>
+        <img className="add-img" src={this.state.add_img}/>
       </div>
     );
   }
