@@ -98,8 +98,8 @@ ul {
     width: 40px;
     height: 40px;
     cursor: pointer;
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .add-img:hover{
