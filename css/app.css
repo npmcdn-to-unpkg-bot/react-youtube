@@ -35,6 +35,10 @@ button, input, select, option {
     background: url(../images/play-arrow.png);
 }
 
+.pause-playlist {
+    background: url(../images/pause.png);
+}
+
 .prev{
     background: url(../images/left_arrow.png);
 }
