@@ -69,6 +69,11 @@ function onPlayerReady(event) {
 }
 
 function onPlayerStateChange(event) {
+  if (event.data == YT.PlayerState.PLAYING) {
+    // console.log(event.target.getVideoData().video_id);
+    $('.playlist-element').removeClass('playling-now');
+    $("li[data-video-id='"+ event.target.getVideoData().video_id +"']").addClass('playling-now');
+  }
 }
 
 // Video container
@@ -92,7 +97,6 @@ var VideoBox = React.createClass({
     $('.add-img').show();
   },
   setQueryParams: function (event) {
-    var timer;
     var element = $(event.target);
     searchParams.q = $('#search-box').val();
     searchParams.order = $('#order-select').val();
@@ -100,10 +104,10 @@ var VideoBox = React.createClass({
     if (element.is('.fetch-next-prev')) {
       searchParams.pageToken = (element.is('.prev')) ? searchParams.previousPageToken : searchParams.nextPageToken;
     }
-    clearTimeout(timer);
+    clearTimeout(this.timer);
     $('.spinner').addClass('loader');
     $('.add-img').hide();
-    timer = setTimeout(this.queryForVideos, 500);
+    this.timer = setTimeout(this.queryForVideos, 500);
   },
   componentDidMount: function () {
     $(document).on('keyup', '#search-box', this.setQueryParams);
@@ -182,7 +186,7 @@ var PlayList = React.createClass({
     var count = 0;
     return (
       <div>
-        <button className="btn btn-default play-playlist">Play Playlist</button>
+        <button className="btn btn-default btn-lg play-playlist">Play Playlist</button>
         <ul className="playList">
           {this.state.playlist_data.map(function (datum) {
             count++;

@@ -1,7 +1,7 @@
 body {
     margin: 0;
     background: #1a1a1a;
-    color: #D6CB02;
+    color: #ababab;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -20,7 +20,6 @@ button, input, select, option {
 
 #player-wrapper> iframe {
     margin-top: 10%;
-    border: 5px solid #D6CB02;
 }
 
 .fetch-next-prev{
@@ -55,9 +54,10 @@ button, input, select, option {
 .videoThumbnail:hover {
     opacity: 1;
     cursor: pointer;
+    color: #f5f5f5;
 }
 
-button:hover, button:focus, button:visited{
+.fetch-next-prev:hover, .fetch-next-prev:focus, .fetch-next-prev:visited{
     background-color: #1a1a1a !important;
     opacity: 0.6 !important;
     outline: none !important;
@@ -80,6 +80,7 @@ button:hover, button:focus, button:visited{
     padding: 2px;
     position: absolute;
     cursor: pointer;
+    color: inherit;
 }
 
 ul {
@@ -112,6 +113,14 @@ ul {
     margin: 10px 0px;
 }
 
+.play-playlist{
+    margin-bottom: 5px;
+}
+
+.playling-now {
+    color: #f5f5f5;
+}
+
 /**
 *   Searchbar styles & select box
 */
@@ -119,10 +128,9 @@ ul {
 .search> input[type=text] {
     width: 60%;
     box-sizing: border-box;
-    border: 2px solid #BDB635;
+    border: 2px solid #ababab;
     border-radius: 4px;
     font-size: 16px;
-    /*background-color:#D6CB02;*/
     background-image: url('../images/search.png');
     background-position: 10px 10px;
     background-repeat: no-repeat;
@@ -134,6 +142,7 @@ ul {
 
 .search> input[type=text]:focus {
     width: 80%;
+    outline: none !important;
 }
 
 select#order-select {
@@ -143,18 +152,23 @@ select#order-select {
     -webkit-padding-end: 20px;
     -webkit-padding-start: 2px;
     -webkit-user-select: none;
-    background-color: #D6CB02;
+    background-color: #f5f5f5;
     background-image: url('../images/select-dropdown.png');
     background-position: 97% center;
     background-repeat: no-repeat;
     box-sizing: border-box;
-    border: 2px solid #BDB635;
+    border: 2px solid #ababab;
     border-radius: 4px;
     font-size: 16px;
     padding: 12px 40px 12px 20px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    cursor: pointer;
+    outline: none !important;
+}
+
+.playlist-element{
     cursor: pointer;
 }
 
@@ -169,7 +183,7 @@ select#order-select {
   border-top: 1.1em solid rgba(255, 255, 255, 0.2);
   border-right: 1.1em solid rgba(255, 255, 255, 0.2);
   border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
-  border-left: 1.1em solid #D6CB02;
+  border-left: 1.1em solid #ababab;
   position: relative;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
