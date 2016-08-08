@@ -60,10 +60,11 @@ function onPlayerReady(event) {
   });
   $(document).on("click", ".play-playlist", function (event) {
     var custom_playlist = [];
+    var index = 0;
     $('.playList li').each(function () {
       custom_playlist.push($(this).attr('data-video-id'));
     });
-    player.loadPlaylist(custom_playlist);
+    player.loadPlaylist(custom_playlist, index);
   });
 
 }
@@ -186,7 +187,7 @@ var PlayList = React.createClass({
     var count = 0;
     return (
       <div>
-        <button className="btn btn-default btn-lg play-playlist">Play Playlist</button>
+        <button className="btn btn-default btn-lg play-playlist"></button>
         <ul className="playList">
           {this.state.playlist_data.map(function (datum) {
             count++;

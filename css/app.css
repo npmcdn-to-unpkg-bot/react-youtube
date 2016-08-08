@@ -22,7 +22,7 @@ button, input, select, option {
     margin-top: 10%;
 }
 
-.fetch-next-prev{
+.fetch-next-prev, .play-playlist{
     margin: 10px 10px 10px 0px;
     border: none;
     font-size: 16px;
@@ -31,15 +31,21 @@ button, input, select, option {
     height: 50px;
 }
 
+.play-playlist {
+    background: url(../images/play-arrow.png);
+}
+
 .prev{
     background: url(../images/left_arrow.png);
-    background-size: 50px 50px;
-    background-repeat: no-repeat;
 }
 .next{
     background: url(../images/right_arrow.png);
+}
+
+.prev, .next, .play-playlist{
     background-size: 50px 50px;
     background-repeat: no-repeat;
+    opacity: 0.6;
 }
 
 .videoThumbnail {
@@ -57,9 +63,9 @@ button, input, select, option {
     color: #f5f5f5;
 }
 
-.fetch-next-prev:hover, .fetch-next-prev:focus, .fetch-next-prev:visited{
+.fetch-next-prev:hover, .fetch-next-prev:focus, .fetch-next-prev:visited, .play-playlist:hover, .play-playlist:focus, .play-playlist:visited{
     background-color: #1a1a1a !important;
-    opacity: 0.6 !important;
+    opacity: 1 !important;
     outline: none !important;
 }
 
