@@ -2,7 +2,7 @@
  * Config Object
  */
 var config = {
-  youtubeApiKey: 'API_KEY',
+  youtubeApiKey: 'AIzaSyD3m_vg_WGidTCn5iXczRbpnvIEI0CvS04',
   youtubeApiIframe: 'https://www.youtube.com/iframe_api',
   youtubeApiSearch: '',
   youtubeApiVideo: ''
@@ -58,13 +58,23 @@ function onPlayerReady(event) {
       'suggestedQuality': 'large'
     });
   });
-  $(document).on("click", ".play-playlist", function (event) {
+  $(document).on("click", ".playlist-btn", function (event) {
     var custom_playlist = [];
     var index = 0;
     $('.playList li').each(function () {
       custom_playlist.push($(this).attr('data-video-id'));
     });
-    player.loadPlaylist(custom_playlist, index);
+    $('.playlist-btn').toggleClass('pause-playlist');
+    $('.playlist-btn').toggleClass('play-playlist');
+    // play or pause the playlist from where it stopped
+    if ($('.playlist-btn').hasClass('first-play')){
+      $('.playlist-btn').removeClass('first-play');
+      player.loadPlaylist(custom_playlist, index);
+    }else if($('.playlist-btn').hasClass('pause-playlist')){
+      player.playVideo();
+    }else if($('.playlist-btn').hasClass('play-playlist')){
+      player.pauseVideo();
+    }
   });
 
 }
@@ -73,7 +83,7 @@ function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING) {
     // console.log(event.target.getVideoData().video_id);
     $('.playlist-element').removeClass('playling-now');
-    $("li[data-video-id='"+ event.target.getVideoData().video_id +"']").addClass('playling-now');
+    $("li[data-video-id='" + event.target.getVideoData().video_id + "']").addClass('playling-now');
   }
 }
 
@@ -187,7 +197,9 @@ var PlayList = React.createClass({
     var count = 0;
     return (
       <div>
-        <button className="btn btn-default btn-lg play-playlist"></button>
+        <div className="col-lg-offset-4 col-lg-4">
+          <button className="btn btn-default btn-lg play-playlist playlist-btn first-play"></button>
+        </div>
         <ul className="playList">
           {this.state.playlist_data.map(function (datum) {
             count++;
